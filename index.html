@@ -3,76 +3,94 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>대학생 자기이해 &amp; 진로 탐색 안내</title>
+  <title>자기이해 검사 배너 A/B 테스트</title>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
   <style>
-    :root {--bg:#f4f7fb;--surface:#ffffff;--surface-soft:#eff6ff;--primary:#2563eb;--primary-dark:#1d4ed8;--navy:#0f172a;--text:#1e293b;--muted:#64748b;--border:#e2e8f0;--accent-teal:#0d9488;--accent-indigo:#4f46e5;--shadow:0 10px 30px rgba(15,23,42,0.08);--radius:18px;}
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:"Pretendard",-apple-system,BlinkMacSystemFont,"Malgun Gothic",sans-serif;background:linear-gradient(180deg,#eef4ff 0%,#f8fafc 45%,#f1f5f9 100%);color:var(--text);min-height:100vh;line-height:1.55;-webkit-font-smoothing:antialiased}
-    .container{max-width:520px;margin:0 auto;padding:24px 16px 48px}
-    .top-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;padding:0 4px}
-    .brand{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:700;color:var(--primary-dark)}
-    .brand-dot{width:10px;height:10px;border-radius:50%;background:var(--primary);box-shadow:0 0 0 4px rgba(37,99,235,0.15)}
-    .tag-pill{font-size:12px;font-weight:600;color:var(--primary);background:var(--surface-soft);border:1px solid #bfdbfe;padding:4px 10px;border-radius:999px}
-    .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:26px 22px;transition:transform .2s ease,opacity .25s ease}
-    .banner-badge{display:inline-block;font-size:12px;font-weight:700;color:#1e40af;background:#dbeafe;padding:5px 11px;border-radius:8px;margin-bottom:14px}
-    .banner-title{font-size:22px;font-weight:800;color:var(--navy);line-height:1.35;margin-bottom:12px;letter-spacing:-0.02em}
-    .banner-body{font-size:15px;color:#475569;margin-bottom:20px;word-break:keep-all}
-    .banner-meta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
-    .meta-chip{font-size:12.5px;color:#334155;background:#f8fafc;border:1px solid var(--border);padding:6px 10px;border-radius:10px}
-    .cta-btn{width:100%;border:none;background:linear-gradient(135deg,#2563eb 0%,#1d4ed8 100%);color:#fff;font-size:16px;font-weight:700;padding:15px 18px;border-radius:13px;cursor:pointer;box-shadow:0 8px 18px rgba(37,99,235,0.25);transition:transform .15s ease,box-shadow .15s ease;font-family:inherit}
-    .cta-btn:hover{transform:translateY(-1px);box-shadow:0 10px 22px rgba(37,99,235,0.32)}
-    .cta-btn:active{transform:translateY(0)}
-    .sub-note{margin-top:12px;text-align:center;font-size:12px;color:var(--muted)}
-    .hidden{display:none !important}
-    .preview-header{margin-bottom:16px}
-    .preview-header h2{font-size:19px;font-weight:800;color:var(--navy);margin-bottom:4px}
-    .preview-header p{font-size:13.5px;color:var(--muted)}
-    .module-box{background:#f8fafc;border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:14px}
-    .module-title{display:flex;align-items:center;justify-content:space-between;font-size:14.5px;font-weight:700;color:var(--navy)}
-    .module-badge{font-size:12px;color:#1e40af;background:#dbeafe;padding:5px 11px;border-radius:8px}
-    .rating-box{padding:20px;background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow)}
-    .rating-question{font-size:16px;margin-bottom:12px}
-    .scale-labels span{display:inline-block;width:30%;font-size:13px}
-    .rating-buttons{display:flex;gap:6px;flex-wrap:wrap}
-    .rate-btn{flex:1 1 30%;padding:8px;background:var(--primary);color:#fff;border:none;border-radius:6px;cursor:pointer}
-    .rate-btn:hover{background:var(--primary-dark)}
-    .rating-feedback{margin-top:10px;font-size:14px;color:var(--accent-teal)}
+    :root {
+      --bg: #f4f7fb;
+      --surface: #ffffff;
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --navy: #0f172a;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --shadow: 0 10px 30px rgba(15,23,42,0.08);
+      --radius: 18px;
+    }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { background: var(--bg); color: var(--text); font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Malgun Gothic", sans-serif; min-height:100vh; line-height:1.55; -webkit-font-smoothing: antialiased; }
+    .container { max-width: 520px; margin: 0 auto; padding: 24px 16px 48px; }
+    .card { background: var(--surface); border:1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); padding: 24px 20px; margin-bottom: 18px; }
+    .badge { display:inline-block; font-size:12px; font-weight:700; color:#1e40af; background:#dbeafe; padding:5px 11px; border-radius:8px; margin-bottom:12px; }
+    .title { font-size:22px; font-weight:800; color:var(--navy); margin-bottom:12px; line-height:1.35; }
+    .body { font-size:15px; color:#475569; margin-bottom:20px; }
+    .chips { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:22px; }
+    .chip { font-size:12.5px; background:#f8fafc; border:1px solid var(--border); padding:6px 10px; border-radius:10px; color:#334155; }
+    .cta-btn { width:100%; border:none; background:linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color:#fff; font-size:16px; font-weight:700; padding:15px 18px; border-radius:13px; cursor:pointer; box-shadow:0 8px 18px rgba(37,99,235,0.25); transition:transform .15s ease, box-shadow .15s ease; }
+    .cta-btn:hover { transform:translateY(-1px); box-shadow:0 10px 22px rgba(37,99,235,0.32); }
+    .cta-btn:active { transform:translateY(0); }
+    .hidden { display:none !important; }
+    .preview-header { margin-bottom:16px; }
+    .preview-header h2 { font-size:19px; font-weight:800; color:var(--navy); margin-bottom:4px; }
+    .module-box { background:#f8fafc; border:1px solid var(--border); border-radius:14px; padding:16px; margin-bottom:14px; }
+    .module-title { display:flex; justify-content:space-between; font-size:14.5px; font-weight:700; color:var(--navy); margin-bottom:8px; }
+    .module-badge { font-size:12px; color:#1e40af; background:#dbeafe; padding:5px 11px; border-radius:8px; }
+    .rating-box { background:var(--surface); border-radius:var(--radius); box-shadow:var(--shadow); padding:20px; }
+    .rating-question { font-size:16px; margin-bottom:12px; }
+    .scale-labels span { display:inline-block; width:30%; font-size:13px; }
+    .rating-buttons { display:flex; gap:6px; flex-wrap:wrap; }
+    .rate-btn { flex:1 1 30%; padding:8px; background:var(--primary); color:#fff; border:none; border-radius:6px; cursor:pointer; }
+    .rate-btn:hover { background:var(--primary-dark); }
+    .rating-feedback { margin-top:10px; font-size:14px; color:#0d9488; }
+    .thankyou { text-align:center; }
   </style>
 </head>
 <body>
 <div class="container">
+  <!-- A/B 배너 ------------------------------------------------------------------>
   <section id="banner" class="card">
-    <div class="banner-badge">자기이해 · 진로 안내</div>
-    <h2 class="banner-title">남들 기준 말고 '나다운 선택' 원하시나요?</h2>
-    <p class="banner-body">그동안 받은 성격·진로·정서 검사를 한곳에 모아 나만의 성향 패턴과 선택 기준을 확인해 보세요.</p>
-    <div class="banner-meta"><span class="meta-chip">검사 통합 아카이브</span><span class="meta-chip">성향 패턴 요약</span><span class="meta-chip">무료 요약 제공</span></div>
-    <button id="cta-btn" class="cta-btn">심리검사 통합 페이지 미리보기</button>
-    <p class="sub-note hidden" id="click-msg">✅ 클릭 기록이 저장되었습니다.</p>
+    <div class="badge" id="banner-badge"></div>
+    <h2 class="title" id="banner-title"></h2>
+    <p class="body" id="banner-body"></p>
+    <div class="chips" id="banner-chips"></div>
+    <button id="cta-btn" class="cta-btn"></button>
+    <p class="sub-note hidden" id="impression-msg">✅ 노출 기록됨.</p>
   </section>
 
+  <!-- B‑variant 상세 미리보기 ------------------------------------------------------>
   <section id="preview-b" class="card hidden">
-    <div class="preview-header"><span class="banner-badge">프로토타입 미리보기</span><h2>나만의 자기이해 아카이빙 개인 페이지</h2><p>흩어진 심리검사 결과를 한곳에 연결해 나만의 성향과 선택 기준을 발견합니다.</p></div>
+    <div class="preview-header">
+      <span class="badge">프로토타입 미리보기</span>
+      <h2>나만의 자기이해 아카이빙 개인 페이지</h2>
+      <p>흩어진 심리검사 결과를 한곳에 모아 나만의 성향과 선택 기준을 발견합니다.</p>
+    </div>
+    <!-- Feature 1: 타임라인 -->
     <div class="module-box">
       <div class="module-title"><span>① 학년별 심리검사 시계열 타임라인</span><span class="module-badge">변화 추적</span></div>
-      <!-- timeline placeholder -->
+      <p style="font-size:13px; color:#334155;">(예시) 1학년 1학기 → 2학년 2학기 → 3학년 1학기 ...</p>
     </div>
+    <!-- Feature 2: 인사이트 카드 -->
     <div class="module-box">
       <div class="module-title"><span>② 성격·진로·정서 교차 패턴 인사이트</span><span class="module-badge">통합 분석</span></div>
-      <!-- insight cards placeholder -->
+      <p style="font-size:13px; color:#334155;">(예시) 자율성 기반 몰입형 성향 / 외부 비교 시 에너지 소모 패턴</p>
     </div>
-    <div class="connect-box">
+    <!-- Feature 3: 원클릭 상담 -->
+    <div class="module-box">
       <div class="module-title" style="margin-bottom:6px;"><span>③ 맞춤 상담 원클릭 연결</span><span class="module-badge">상담원</span></div>
-      <p style="font-size:12.5px;color:#334155;">매번 처음부터 설명할 필요 없이, 위 <strong>통합 아카이브 요약본(3개년 추이)</strong>을 첨부해 맞춤 해석 상담을 바로 연결합니다.</p>
-      <button id="connect-counsel-btn" class="connect-btn" type="button">내 아카이브 요약 첨부해 맞춤 상담 연결하기</button>
-      <p id="connect-counsel-msg" class="sub-note hidden" style="color:#0f766e;font-weight:600;text-align:left;">✓ 아카이브 요약본이 선택되었습니다. 실제 서비스에서는 상담 신청서로 자동 연동됩니다.</p>
+      <p style="font-size:13px; color:#334155;">위 <strong>통합 아카이브 요약본(3개년 추이)</strong>을 첨부해 바로 맞춤 상담을 연결합니다.</p>
+      <button id="connect-btn" class="cta-btn" style="background:linear-gradient(135deg, #10b981 0%, #059669 100%); margin-top:8px;">내 아카이브 요약 첨부해 상담 연결</button>
+      <p id="connect-msg" class="sub-note hidden" style="color:#0f766e; font-weight:600; margin-top:6px;">✓ 아카이브 요약이 선택되었습니다.</p>
     </div>
   </section>
 
+  <!-- Rating ---------------------------------------------------------------------->
   <section id="rating-section" class="rating-box hidden">
     <p class="rating-question">이 페이지가 나에게 맞는 진로·일상을 주체적으로 선택하는 데 도움이 될 것 같나요?</p>
-    <div class="scale-labels"><span>1 · 전혀 아니다</span><span>4 · 보통</span><span>7 · 매우 그렇다</span></div>
+    <div class="scale-labels">
+      <span>1 · 전혀 아니다</span><span>4 · 보통</span><span>7 · 매우 그렇다</span>
+    </div>
     <div id="rating-buttons" class="rating-buttons">
       <button class="rate-btn" data-score="1">1</button>
       <button class="rate-btn" data-score="2">2</button>
@@ -84,38 +102,90 @@
     </div>
     <p id="rating-feedback" class="rating-feedback hidden"></p>
   </section>
+
+  <!-- Thank‑you ------------------------------------------------------------------->
+  <section id="thankyou" class="card hidden thankyou">
+    <h2 class="title">감사합니다!</h2>
+    <p class="body">귀하의 선택이 기록되었습니다. 설문에 참여해 주셔서 감사합니다.</p>
+  </section>
 </div>
+
 <script>
 (function(){
   const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwQ-Xr9yESk0NMiCKVq3gHtvp13XsdK_GpK50xKK_bz60ga0RSQl1xJoxRFzQankwOB/exec";
-  const STORAGE_KEYS={variant:"ab_exp_variant_v1",sessionId:"ab_exp_session_v1",impressionSent:"ab_exp_imp_sent_v1",clicked:"ab_exp_clicked_v1",rating:"ab_exp_rating_v1",localLog:"ab_exp_local_logs_v1"};
-  const VARIANTS={A:{badge:"진로 · 역량 안내",title:"취업과 진로 준비, 아직 막막하신가요?",body:"무료 적성검사로 직무 역량을 바로 점검하고 나에게 맞는 학점·진로 관리 팁을 확인해 보세요.",chips:["직무 적성 점검","학점·스펙 가이드","무료 요약 제공"],button:"적성검사 및 진로 팁 미리보기"},B:{badge:"자기이해 · 진로 안내",title:"남들 기준 말고 '나다운 선택' 원하시나요?",body:"그동안 받은 성격·진로·정서 검사를 한곳에 모아 나만의 성향 패턴과 선택 기준을 확인해 보세요.",chips:["검사 통합 아카이브","성향 패턴 요약","무료 요약 제공"],button:"심리검사 통합 페이지 미리보기"}};
-  const urlParams=new URLSearchParams(window.location.search);
-  const previewParam=urlParams.get("preview");
-  const isDemo=previewParam==="A"||previewParam==="B";
-  const variant=isDemo?previewParam:(localStorage.getItem(STORAGE_KEYS.variant)||"A");
-  const data=VARIANTS[variant];
-  document.title=data.title;
-  const banner=document.getElementById("banner");
-  banner.querySelector('.banner-badge').textContent=data.badge;
-  banner.querySelector('.banner-title').textContent=data.title;
-  banner.querySelector('.banner-body').textContent=data.body;
-  banner.querySelectorAll('.meta-chip').forEach((el,i)=>el.textContent=data.chips[i]);
-  document.getElementById('cta-btn').textContent=data.button;
-  const sessionId=localStorage.getItem(STORAGE_KEYS.sessionId)||"s_"+Date.now()+"_"+Math.random().toString(36).substr(2,5);
-  localStorage.setItem(STORAGE_KEYS.sessionId,sessionId);
-  function sendLog(payload){fetch(GAS_WEB_APP_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)}).catch(()=>{});}
-  if(!localStorage.getItem(STORAGE_KEYS.impressionSent)){
-    sendLog({session_id:sessionId,variant,event_type:"impression"});
-    localStorage.setItem(STORAGE_KEYS.impressionSent,"1");
+  const STORAGE_KEYS = {
+    variant: "ab_exp_variant_v1",
+    sessionId: "ab_exp_session_v1",
+    impSent: "ab_exp_imp_sent_v1",
+    clicked: "ab_exp_clicked_v1",
+    rating: "ab_exp_rating_v1",
+  };
+  const VARIANTS = {
+    A: {
+      badge: "진로 · 역량 안내",
+      title: "취업과 진로 준비가 막막하신가요?",
+      body: "무료 적성검사를 통해 직무 역량을 점검하고 학점·진로 관리 팁을 받아보세요.",
+      chips: ["직무 적성 점검", "학점·스펙 가이드", "무료 요약 제공"],
+      button: "적성검사 및 진로 팁 자세히 보기"
+    },
+    B: {
+      badge: "자기이해 · 진로 안내",
+      title: "남들 기준 말고 '나다운 선택'을 하고 싶다면?",
+      body: "그동안 받은 성격·진로·정서 검사 결과를 한 페이지에 모아 나만의 성향 패턴과 선택 기준을 확인해 보세요.",
+      chips: ["검사 통합 아카이브", "성향 패턴 요약", "무료 요약 제공"],
+      button: "내 심리검사 통합 페이지 미리보기"
+    }
+  };
+  // Random 50:50 assignment
+  let variant = localStorage.getItem(STORAGE_KEYS.variant);
+  if (!variant) {
+    variant = Math.random() < 0.5 ? "A" : "B";
+    localStorage.setItem(STORAGE_KEYS.variant, variant);
   }
+  const cfg = VARIANTS[variant];
+  // UI 적용
+  document.getElementById('banner-badge').textContent = cfg.badge;
+  document.getElementById('banner-title').textContent = cfg.title;
+  document.getElementById('banner-body').textContent = cfg.body;
+  const chipsContainer = document.getElementById('banner-chips');
+  cfg.chips.forEach(t=>{ const s=document.createElement('span'); s.className='chip'; s.textContent=t; chipsContainer.appendChild(s); });
+  document.getElementById('cta-btn').textContent = cfg.button;
+  // Session ID
+  let sessionId = localStorage.getItem(STORAGE_KEYS.sessionId);
+  if (!sessionId) {
+    sessionId = 's_' + Date.now() + '_' + Math.random().toString(36).substr(2,5);
+    localStorage.setItem(STORAGE_KEYS.sessionId, sessionId);
+  }
+  // Log helper
+  function sendLog(p){ fetch(GAS_WEB_APP_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(p)}).catch(()=>{}); }
+  // Impression (once)
+  if (!localStorage.getItem(STORAGE_KEYS.impSent)) {
+    sendLog({session_id:sessionId, variant, event_type:"impression", clicked:0});
+    localStorage.setItem(STORAGE_KEYS.impSent, "1");
+    document.getElementById('impression-msg').classList.remove('hidden');
+  }
+  // CTA click -> click log + show preview & rating
   document.getElementById('cta-btn').addEventListener('click',()=>{
-    sendLog({session_id:sessionId,variant,clicked:1,event_type:"click"});
-    document.getElementById('click-msg').classList.remove('hidden');
+    sendLog({session_id:sessionId, variant, event_type:"click", clicked:1});
     document.getElementById('preview-b').classList.remove('hidden');
     document.getElementById('rating-section').classList.remove('hidden');
+    document.getElementById('impression-msg').textContent = "✅ 클릭 기록됨";
   });
-  document.getElementById('rating-buttons').addEventListener('click',e=>{if(e.target.classList.contains('rate-btn')){const score=e.target.dataset.score;sendLog({session_id:sessionId,variant,autonomy_score:score,event_type:"rating"});document.getElementById('rating-feedback').textContent=`감사합니다! 선택 점수: ${score}`;document.getElementById('rating-feedback').classList.remove('hidden');}});
+  // Connect button (UI only)
+  document.getElementById('connect-btn').addEventListener('click',()=>{
+    document.getElementById('connect-msg').classList.remove('hidden');
+  });
+  // Rating handling -> thank you
+  document.getElementById('rating-buttons').addEventListener('click', e=>{
+    if (!e.target.classList.contains('rate-btn')) return;
+    const score = e.target.dataset.score;
+    sendLog({session_id:sessionId, variant, event_type:"rating", autonomy_score: Number(score)});
+    const fb = document.getElementById('rating-feedback');
+    fb.textContent = `감사합니다! 선택 점수: ${score}`;
+    fb.classList.remove('hidden');
+    document.getElementById('rating-section').classList.add('hidden');
+    document.getElementById('thankyou').classList.remove('hidden');
+  });
 })();
 </script>
 </body>
