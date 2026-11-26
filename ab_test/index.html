@@ -578,7 +578,7 @@
       <div class="connect-box">
         <div class="module-title" style="margin-bottom:6px;">
           <span>③ 맞춤 상담 원클릭 연결</span>
-          <span class="module-badge">맞춤 상담 연결</span>
+          <span class="module-badge">상담원</span>
         </div>
         <p style="font-size:12.5px; color:#334155;">
           매번 처음부터 설명할 필요 없이, 위 <strong>통합 아카이브 요약본(3개년 추이)</strong>을 첨부해 맞춤 해석 상담을 바로 연결합니다.
@@ -594,6 +594,23 @@
 
     <!-- STEP 3: Shared 1-7 Autonomy Evaluation Scale (Shown after clicking CTA) -->
     <section id="rating-section" class="rating-box hidden">
+    <p class="rating-question">이 페이지가 나에게 맞는 진로·일상을 주체적으로 선택하는 데 도움이 될 것 같나요?</p>
+    <div class="scale-labels"><span>1 · 전혀 아니다</span><span>4 · 보통</span><span>7 · 매우 그렇다</span></div>
+    <div id="rating-buttons" class="rating-buttons">
+      <button class="rate-btn" data-score="1">1</button>
+      <button class="rate-btn" data-score="2">2</button>
+      <button class="rate-btn" data-score="3">3</button>
+      <button class="rate-btn" data-score="4">4</button>
+      <button class="rate-btn" data-score="5">5</button>
+      <button class="rate-btn" data-score="6">6</button>
+      <button class="rate-btn" data-score="7">7</button>
+    </div>
+    <p id="rating-feedback" class="rating-feedback hidden"></p>
+  </section>
+  <section id="thankyou" class="card hidden">
+    <h2 class="banner-title">감사합니다!</h2>
+    <p class="banner-body">귀하의 선택이 기록되었습니다. 설문에 참여해 주셔서 감사합니다.</p>
+  </section>
       <p class="rating-question">
         이 페이지가 나에게 맞는 진로·일상을 주체적으로 선택하는 데 도움이 될 것 같나요?
       </p>
