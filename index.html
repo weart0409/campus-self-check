@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>대학생 자기이해 & 진로 탐색 안내</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --surface: #ffffff;
+      --surface-soft: #eff6ff;
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --navy: #0f172a;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --accent-teal: #0d9488;
+      --accent-indigo: #4f46e5;
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      --radius: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Malgun Gothic", sans-serif;
+      background: linear-gradient(180deg, #eef4ff 0%, #f8fafc 45%, #f1f5f9 100%);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 24px 16px 48px;
+    }
+
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+      padding: 0 4px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--primary-dark);
+    }
+
+    .brand-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--primary);
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+    }
+
+    .tag-pill {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--primary);
+      background: var(--surface-soft);
+      border: 1px solid #bfdbfe;
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 26px 22px;
+      transition: transform 0.2s ease, opacity 0.25s ease;
+    }
+
+    .banner-badge {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      color: #1e40af;
+      background: #dbeafe;
+      padding: 5px 11px;
+      border-radius: 8px;
+      margin-bottom: 14px;
+    }
+
+    .banner-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1.35;
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+
+    .banner-body {
+      font-size: 15px;
+      color: #475569;
+      margin-bottom: 20px;
+      word-break: keep-all;
+    }
+
+    .banner-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 22px;
+    }
+
+    .meta-chip {
+      font-size: 12.5px;
+      color: #334155;
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      padding: 6px 10px;
+      border-radius: 10px;
+    }
+
+    .cta-btn {
+      width: 100%;
+      border: none;
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: 700;
+      padding: 15px 18px;
+      border-radius: 13px;
+      cursor: pointer;
+      box-shadow: 0 8px 18px rgba(37, 99, 235, 0.25);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      font-family: inherit;
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 22px rgba(37, 99, 235, 0.32);
+    }
+
+    .cta-btn:active {
+      transform: translateY(0);
+    }
+
+    .sub-note {
+      margin-top: 12px;
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* Preview View Styles */
+    .preview-header {
+      margin-bottom: 16px;
+    }
+
+    .preview-header h2 {
+      font-size: 19px;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+
+    .preview-header p {
+      font-size: 13.5px;
+      color: var(--muted);
+    }
+
+    .module-box {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 14px;
+    }
+
+    .module-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+
+    .module-badge {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--primary);
+      background: #dbeafe;
+      padding: 3px 8px;
+      border-radius: 999px;
+    }
+
+    /* Timeline (Variant B Module 1) */
+    .timeline {
+      position: relative;
+      padding-left: 18px;
+      border-left: 2px solid #bfdbfe;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .tl-item {
+      position: relative;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 11px;
+      padding: 10px 12px;
+    }
+
+    .tl-item::before {
+      content: "";
+      position: absolute;
+      left: -24px;
+      top: 14px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--primary);
+      border: 2px solid #ffffff;
+      box-shadow: 0 0 0 2px #93c5fd;
+    }
+
+    .tl-year {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .tl-name {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--navy);
+      margin: 2px 0;
+    }
+
+    .tl-desc {
+      font-size: 12.5px;
+      color: #475569;
+    }
+
+    /* Cross-Pattern Insights (Variant B Module 2) */
+    .insight-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 9px;
+    }
+
+    .insight-card {
+      background: #ffffff;
+      border-left: 4px solid var(--primary);
+      border-top: 1px solid #e2e8f0;
+      border-right: 1px solid #e2e8f0;
+      border-bottom: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 11px 12px;
+    }
+
+    .insight-card strong {
+      display: block;
+      font-size: 13px;
+      color: var(--navy);
+      margin-bottom: 3px;
+    }
+
+    .insight-card span {
+      font-size: 12.5px;
+      color: #475569;
+    }
+
+    .keyword-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    .kw-chip {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #1e40af;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      padding: 4px 9px;
+      border-radius: 999px;
+    }
+
+    /* One-click Counseling Connect (Variant B Module 3) */
+    .connect-box {
+      background: linear-gradient(135deg, #eff6ff 0%, #e0e7ff 100%);
+      border: 1px solid #bfdbfe;
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    .connect-btn {
+      width: 100%;
+      margin-top: 10px;
+      border: none;
+      background: #1e40af;
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 12px 14px;
+      border-radius: 11px;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .connect-btn:disabled {
+      background: #0d9488;
+      cursor: default;
+    }
+
+    /* Variant A Preview Cards */
+    .a-tip-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .a-tip-item {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 11px;
+      padding: 11px 13px;
+    }
+
+    .a-tip-item strong {
+      display: block;
+      font-size: 13.5px;
+      color: var(--navy);
+      margin-bottom: 3px;
+    }
+
+    .a-tip-item span {
+      font-size: 12.5px;
+      color: #475569;
+    }
+
+    .score-bar-wrap {
+      background: #e2e8f0;
+      height: 8px;
+      border-radius: 999px;
+      overflow: hidden;
+      margin: 6px 0 10px;
+    }
+
+    .score-bar-fill {
+      height: 100%;
+      background: var(--primary);
+      border-radius: 999px;
+    }
+
+    /* 1-7 Likert Rating Section */
+    .rating-box {
+      margin-top: 18px;
+      background: #ffffff;
+      border: 1.5px solid #bfdbfe;
+      border-radius: 15px;
+      padding: 18px 16px;
+      text-align: center;
+    }
+
+    .rating-question {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 12px;
+      word-break: keep-all;
+    }
+
+    .scale-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11.5px;
+      color: var(--muted);
+      margin-bottom: 8px;
+      padding: 0 2px;
+    }
+
+    .rating-buttons {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 6px;
+    }
+
+    .rate-btn {
+      height: 42px;
+      border: 1px solid #cbd5e1;
+      background: #f8fafc;
+      color: var(--navy);
+      font-size: 15px;
+      font-weight: 700;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      font-family: inherit;
+    }
+
+    .rate-btn:hover {
+      border-color: var(--primary);
+      background: #eff6ff;
+      color: var(--primary-dark);
+    }
+
+    .rate-btn.selected {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+    }
+
+    .rating-feedback {
+      margin-top: 12px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent-teal);
+    }
+
+    .demo-banner {
+      margin-bottom: 12px;
+      padding: 8px 12px;
+      background: #fef3c7;
+      border: 1px solid #fcd34d;
+      border-radius: 10px;
+      font-size: 12px;
+      color: #92400e;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="demo-notice" class="demo-banner hidden">
+      발표/시연 미리보기 모드입니다 (행동 로그가 실험 데이터에 기록되지 않습니다).
+    </div>
+
+    <div class="top-bar">
+      <div class="brand">
+        <span class="brand-dot"></span>
+        <span>캠퍼스 학생성장 라운지</span>
+      </div>
+      <span class="tag-pill">재학생 무료 안내</span>
+    </div>
+
+    <!-- STEP 1: Landing Banner (A/B Experiment Target) -->
+    <section id="banner-view" class="card" aria-live="polite">
+      <span id="banner-badge" class="banner-badge">진로·검사 안내</span>
+      <h1 id="banner-title" class="banner-title"></h1>
+      <p id="banner-body" class="banner-body"></p>
+
+      <div id="banner-meta" class="banner-meta"></div>
+
+      <button id="cta-button" class="cta-btn" type="button"></button>
+      <p class="sub-note">소요 시간 약 1분 · 로그인 없이 바로 미리보기가 열립니다</p>
+    </section>
+
+    <!-- STEP 2A: Control Group Preview -->
+    <section id="preview-a" class="card hidden">
+      <div class="preview-header">
+        <span class="banner-badge">적성검사 및 진로 팁 요약</span>
+        <h2>직무 역량 점검 & 학점·진로 관리 가이드</h2>
+        <p>단발성 적성검사 결과와 학기별 진로 준비 체크리스트 예시입니다.</p>
+      </div>
+
+      <div class="module-box">
+        <div class="module-title">
+          <span>① 직무 적성 자가진단 샘플</span>
+          <span class="module-badge">표준 역량 리포트</span>
+        </div>
+        <div style="font-size:13px; color:#334155;">분석·기획 직무 적합도 <strong>78점</strong></div>
+        <div class="score-bar-wrap"><div class="score-bar-fill" style="width:78%;"></div></div>
+        <div style="font-size:13px; color:#334155;">커뮤니케이션·협업 역량 <strong>72점</strong></div>
+        <div class="score-bar-wrap"><div class="score-bar-fill" style="width:72%;"></div></div>
+      </div>
+
+      <div class="module-box">
+        <div class="module-title">
+          <span>② 학점·스펙 관리 핵심 팁 3가지</span>
+          <span class="module-badge">취업 준비 기준</span>
+        </div>
+        <div class="a-tip-list">
+          <div class="a-tip-item">
+            <strong>전공 기초 학점 & 직무 관련 수강 이력 정리</strong>
+            <span>목표 직무 공고의 우대 전공·자격 요건을 기준으로 수강 계획을 점검하세요.</span>
+          </div>
+          <div class="a-tip-item">
+            <strong>분기별 대외활동·공모전 포트폴리오화</strong>
+            <span>경험을 수치와 성과 중심(STAR 기법)으로 1페이지씩 정리해 두면 유리합니다.</span>
+          </div>
+          <div class="a-tip-item">
+            <strong>표준 적성검사 정기 응시 및 피드백 확인</strong>
+            <span>채용 시즌 전 직무 적성검사를 다시 점검해 보완 영역을 확인하세요.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 2B: Treatment Group Prototype Dashboard -->
+    <section id="preview-b" class="card hidden">
+      <div class="preview-header">
+        <span class="banner-badge">프로토타입 미리보기</span>
+        <h2>나만의 자기이해 아카이빙 개인 페이지</h2>
+        <p>흩어진 심리검사 결과를 한곳에 연결해 나만의 성향과 선택 기준을 발견합니다.</p>
+      </div>
+
+      <!-- Core Feature 1: Longitudinal Timeline -->
+      <div class="module-box">
+        <div class="module-title">
+          <span>① 학년별 심리검사 시계열 타임라인</span>
+          <span class="module-badge">변화 추적</span>
+        </div>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-year">1학년 1학기 · 진로적성검사</div>
+            <div class="tl-name">탐구형(I) · 사회형(S) 상위</div>
+            <div class="tl-desc">사람과 문제를 깊이 분석할 때 높은 몰입도를 보임</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-year">2학년 2학기 · 성격·기질검사(TCI)</div>
+            <div class="tl-name">자율성 높음 · 위험회피 중간</div>
+            <div class="tl-desc">타인 기준보다 스스로 납득한 목표일 때 실행력 상승</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-year">3학년 1학기 · 정서·스트레스 점검</div>
+            <div class="tl-name">비교 불안 완화 필요 신호</div>
+            <div class="tl-desc">진로 불확실성 구간에서 피로도 상승 → 자기기준 재정렬</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Core Feature 2: Cross-Pattern Insight Card -->
+      <div class="module-box">
+        <div class="module-title">
+          <span>② 성격·진로·정서 교차 패턴 인사이트</span>
+          <span class="module-badge">통합 분석</span>
+        </div>
+        <div class="insight-grid">
+          <div class="insight-card">
+            <strong>패턴 1. 자율성 기반 몰입형 성향</strong>
+            <span>진로적성(탐구)과 기질(자율성)이 맞물려, 정해진 매뉴얼보다 직접 설계하는 과제에서 성취감이 큽니다.</span>
+          </div>
+          <div class="insight-card">
+            <strong>패턴 2. 외부 비교 시 에너지 소모 패턴</strong>
+            <span>타인의 속도와 비교할 때 정서 소진이 커지므로, 나만의 주간 기준을 먼저 세우는 전략이 효과적입니다.</span>
+          </div>
+        </div>
+        <div class="keyword-row">
+          <span class="kw-chip">#주도적_설계</span>
+          <span class="kw-chip">#탐구_해석형</span>
+          <span class="kw-chip">#관계_속_안정감</span>
+        </div>
+      </div>
+
+      <!-- Core Feature 3: One-click Counseling Connect -->
+      <div class="connect-box">
+        <div class="module-title" style="margin-bottom:6px;">
+          <span>③ 맞춤 상담 원클릭 연결</span>
+          <span class="module-badge">효원상담원 연계</span>
+        </div>
+        <p style="font-size:12.5px; color:#334155;">
+          매번 처음부터 설명할 필요 없이, 위 <strong>통합 아카이브 요약본(3개년 추이)</strong>을 첨부해 맞춤 해석 상담을 바로 연결합니다.
+        </p>
+        <button id="connect-counsel-btn" class="connect-btn" type="button">
+          내 아카이브 요약 첨부해 맞춤 상담 연결하기
+        </button>
+        <p id="connect-counsel-msg" class="sub-note hidden" style="color:#0f766e; font-weight:600; text-align:left;">
+          ✓ 아카이브 요약본이 선택되었습니다. 실제 서비스에서는 상담 신청서로 자동 연동됩니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- STEP 3: Shared 1-7 Autonomy Evaluation Scale (Shown after clicking CTA) -->
+    <section id="rating-section" class="rating-box hidden">
+      <p class="rating-question">
+        이 페이지가 나에게 맞는 진로·일상을 주체적으로 선택하는 데 도움이 될 것 같나요?
+      </p>
+      <div class="scale-labels">
+        <span>1 · 전혀 아니다</span>
+        <span>4 · 보통</span>
+        <span>7 · 매우 그렇다</span>
+      </div>
+      <div id="rating-buttons" class="rating-buttons">
+        <button class="rate-btn" type="button" data-score="1">1</button>
+        <button class="rate-btn" type="button" data-score="2">2</button>
+        <button class="rate-btn" type="button" data-score="3">3</button>
+        <button class="rate-btn" type="button" data-score="4">4</button>
+        <button class="rate-btn" type="button" data-score="5">5</button>
+        <button class="rate-btn" type="button" data-score="6">6</button>
+        <button class="rate-btn" type="button" data-score="7">7</button>
+      </div>
+      <p id="rating-feedback" class="rating-feedback hidden"></p>
+    </section>
+  </div>
+
+  <script>
+    (function () {
+      // ============================================================
+      // 1. Google Apps Script Web App URL 설정
+      //    배포 가이드(DEPLOY_GUIDE.md)에 따라 생성한 URL을 아래에 붙여넣으세요.
+      //    비워 두면 브라우저 localStorage에만 안전하게 저장됩니다.
+      // ============================================================
+      const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwQ-Xr9yESk0NMiCKVq3gHtvp13XsdK_GpK50xKK_bz60ga0RSQl1xJoxRFzQankwOB/exec";
+
+      const STORAGE_KEYS = {
+        variant: "ab_exp_variant_v1",
+        sessionId: "ab_exp_session_v1",
+        impressionSent: "ab_exp_imp_sent_v1",
+        clicked: "ab_exp_clicked_v1",
+        rating: "ab_exp_rating_v1",
+        localLog: "ab_exp_local_logs_v1",
+      };
+
+      // 글자 수·어조를 정밀하게 맞춘 A/B 카피 (제목 21자 vs 24자, 본문 51자 vs 53자, 버튼 16자 vs 16자)
+      const VARIANTS = {
+        A: {
+          badge: "진로 · 역량 안내",
+          title: "취업과 진로 준비, 아직 막막하신가요?",
+          body: "무료 적성검사로 직무 역량을 바로 점검하고 나에게 맞는 학점·진로 관리 팁을 확인해 보세요.",
+          chips: ["직무 적성 점검", "학점·스펙 가이드", "무료 요약 제공"],
+          button: "적성검사 및 진로 팁 미리보기",
+        },
+        B: {
+          badge: "자기이해 · 진로 안내",
+          title: "남들 기준 말고 '나다운 선택' 원하시나요?",
+          body: "그동안 받은 성격·진로·정서 검사를 한곳에 모아 나만의 성향 패턴과 선택 기준을 확인해 보세요.",
+          chips: ["검사 통합 아카이브", "성향 패턴 요약", "무료 요약 제공"],
+          button: "심리검사 통합 페이지 미리보기",
+        },
+      };
+
+      // 발표/시연용 URL 파라미터 (?preview=A or ?preview=B) 지원 — 실실험 데이터 오염 방지
+      const urlParams = new URLSearchParams(window.location.search);
+      const previewParam = urlParams.get("preview");
+      const isDemoMode = previewParam === "A" || previewParam === "B";
+
+      if (isDemoMode) {
+        document.getElementById("demo-notice").classList.remove("hidden");
+      }
+
+      function generateSessionId() {
+        if (window.crypto && typeof window.crypto.randomUUID === "function") {
+          return window.crypto.randomUUID();
+        }
+        return "sess_" + Date.now() + "_" + Math.random().toString(36).slice(2, 10);
+      }
+
+      function getOrAssignVariant() {
+        if (isDemoMode) return previewParam;
+        let v = localStorage.getItem(STORAGE_KEYS.variant);
+        if (v !== "A" && v !== "B") {
+          v = Math.random() < 0.5 ? "A" : "B";
+          localStorage.setItem(STORAGE_KEYS.variant, v);
+        }
+        return v;
+      }
+
+      function getOrCreateSessionId() {
+        let sid = localStorage.getItem(STORAGE_KEYS.sessionId);
+        if (!sid) {
+          sid = generateSessionId();
+          localStorage.setItem(STORAGE_KEYS.sessionId, sid);
+        }
+        return sid;
+      }
+
+      function getDeviceType() {
+        return window.innerWidth <= 640 ? "mobile" : "desktop";
+      }
+
+      function saveLocalBackup(payload) {
+        try {
+          const logs = JSON.parse(localStorage.getItem(STORAGE_KEYS.localLog) || "[]");
+          logs.push(payload);
+          localStorage.setItem(STORAGE_KEYS.localLog, JSON.stringify(logs));
+        } catch (e) {
+          // Ignore storage quota issues
+        }
+      }
+
+      function sendLog(payload) {
+        if (isDemoMode) return;
+        saveLocalBackup(payload);
+
+        if (!GAS_WEB_APP_URL) return;
+        // text/plain 헤더를 사용해 Google Apps Script CORS preflight(OPTIONS) 차단 회피
+        fetch(GAS_WEB_APP_URL, {
+          method: "POST",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify(payload),
+          keepalive: true,
+        }).catch(function () {
+          // 네트워크 오류 시에도 사용자 UI 흐름을 방해하지 않음
+        });
+      }
+
+      const variant = getOrAssignVariant();
+      const sessionId = getOrCreateSessionId();
+      const pageLoadedAt = Date.now();
+      const copy = VARIANTS[variant];
+
+      // 2. 배너 렌더링
+      document.getElementById("banner-badge").textContent = copy.badge;
+      document.getElementById("banner-title").textContent = copy.title;
+      document.getElementById("banner-body").textContent = copy.body;
+      document.getElementById("cta-button").textContent = copy.button;
+
+      const metaEl = document.getElementById("banner-meta");
+      copy.chips.forEach(function (chipText) {
+        const span = document.createElement("span");
+        span.className = "meta-chip";
+        span.textContent = "✓ " + chipText;
+        metaEl.appendChild(span);
+      });
+
+      // 3. 접속 즉시 clicked = 0 (노출/이탈 기준) 1회 기록 (새로고침 중복 집계 방지)
+      if (!isDemoMode && !localStorage.getItem(STORAGE_KEYS.impressionSent)) {
+        localStorage.setItem(STORAGE_KEYS.impressionSent, "1");
+        sendLog({
+          event_type: "impression",
+          session_id: sessionId,
+          variant: variant,
+          clicked: 0,
+          autonomy_score: "",
+          dwell_ms: 0,
+          device: getDeviceType(),
+          timestamp: new Date().toISOString(),
+        });
+      }
+
+      function showPreview(v) {
+        document.getElementById("banner-view").classList.add("hidden");
+        document.getElementById(v === "B" ? "preview-b" : "preview-a").classList.remove("hidden");
+        document.getElementById("rating-section").classList.remove("hidden");
+      }
+
+      // 이미 클릭한 재방문자는 바로 미리보기 상태 복원 (데모 모드 제외)
+      if (!isDemoMode && localStorage.getItem(STORAGE_KEYS.clicked) === "1") {
+        showPreview(variant);
+        const savedRating = localStorage.getItem(STORAGE_KEYS.rating);
+        if (savedRating) {
+          markRatingUI(savedRating);
+        }
+      }
+
+      // 4. CTA 버튼 클릭 시 clicked = 1 업데이트 + 상세 미리보기 전환
+      document.getElementById("cta-button").addEventListener("click", function () {
+        const dwellMs = Date.now() - pageLoadedAt;
+        if (!isDemoMode && localStorage.getItem(STORAGE_KEYS.clicked) !== "1") {
+          localStorage.setItem(STORAGE_KEYS.clicked, "1");
+          sendLog({
+            event_type: "click",
+            session_id: sessionId,
+            variant: variant,
+            clicked: 1,
+            autonomy_score: "",
+            dwell_ms: dwellMs,
+            device: getDeviceType(),
+            timestamp: new Date().toISOString(),
+          });
+        }
+        showPreview(variant);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+
+      // 5. B안 프로토타입 내부 원클릭 상담 연결 데모 버튼
+      const connectBtn = document.getElementById("connect-counsel-btn");
+      if (connectBtn) {
+        connectBtn.addEventListener("click", function () {
+          connectBtn.disabled = true;
+          connectBtn.textContent = "요약본 첨부 완료 ✓";
+          document.getElementById("connect-counsel-msg").classList.remove("hidden");
+        });
+      }
+
+      function markRatingUI(score) {
+        const btns = document.querySelectorAll(".rate-btn");
+        btns.forEach(function (btn) {
+          btn.classList.toggle("selected", btn.dataset.score === String(score));
+        });
+        const fb = document.getElementById("rating-feedback");
+        fb.textContent = "소중한 의견(" + score + "점/7점)이 기록되었습니다. 참여해 주셔서 감사합니다!";
+        fb.classList.remove("hidden");
+      }
+
+      // 6. 1~7점 척도 평가 버튼 클릭 시 점수 기록
+      document.getElementById("rating-buttons").addEventListener("click", function (e) {
+        const btn = e.target.closest(".rate-btn");
+        if (!btn) return;
+        const score = Number(btn.dataset.score);
+        if (!isDemoMode) {
+          localStorage.setItem(STORAGE_KEYS.rating, String(score));
+          sendLog({
+            event_type: "rating",
+            session_id: sessionId,
+            variant: variant,
+            clicked: 1,
+            autonomy_score: score,
+            dwell_ms: Date.now() - pageLoadedAt,
+            device: getDeviceType(),
+            timestamp: new Date().toISOString(),
+          });
+        }
+        markRatingUI(score);
+      });
+    })();
+  </script>
+</body>
+</html>
